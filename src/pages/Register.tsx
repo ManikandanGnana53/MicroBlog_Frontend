@@ -6,34 +6,36 @@ import Button from '../components/Button';
 import AxiosInstance from '../utils/axiosINstance';
 
 function Register() {
-  const initialValues:   RegisterProps = {
+  const initialValues: Required<RegisterProps> = {
+    firstName: "",
+    lastName: "",
     email: '',
-    address: '',
-    pincode: 0,
     password: '',
+    contact: 0,
   };
   const validationSchema = yup.object({
+    firstName: yup.string().required("FirstName is requird"),
+    lastName: yup.string().required("LastName is requird"),
     email: yup.string().email("Invalid email format").required("Email is required"),
-    address: yup.string().required("Address is required"),
-    pincode: yup.string().required("Pincode is required").matches(/^[0-9]{6}$/, 'Pincode must be a 6-digit number'),
+    contact: yup.string().required("Contact is required").max(10,"Contact number should 10 digits"),
     password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
   });
-  const submit = (values: { email: string; address: string; pincode: number; password: string }) => {
-    const { email, address, pincode, password } = values;
+  const submit = (values: { firstName: string, lastName: string, email: string; password: string, contact: number; }) => {
+    const { firstName, lastName, email, contact, password } = values;
     const data = {
+      firstname: firstName,
+      lastname: lastName,
       email: email,
-      address: address,
-      picode: pincode,
       password: password,
+      contact: contact,
     };
-    AxiosInstance.post('/register', data)
+    AxiosInstance.post('api/v1/register', data)
       .then(() => alert('USER REGISTERED'))
       .catch((err) => console.log(err));
   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-100 via-teal-100 to-lime-100 flex items-center justify-center">
       <div className="relative w-full max-w-md bg-white shadow-lg rounded-xl p-8 overflow-hidden">
-        {/* Transparent Background Design */}
         <div
           className="absolute inset-0 bg-gradient-to-br from-green-200 via-teal-200 to-lime-200 opacity-30 rounded-xl blur-xl -z-10"
         ></div>
@@ -43,16 +45,19 @@ function Register() {
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submit}>
           <Form>
             <div className="mb-4">
-              <Input label="Email" placeholder="you@example.com" name="email" type="email" />
+              <Input label="Firstname" placeholder="FirstName" name="firstName" />
             </div>
             <div className="mb-4">
-              <Input label="Address" placeholder="Your Address" name="address" />
+              <Input label="LastName" placeholder="LastName" name="lastName" />
             </div>
             <div className="mb-4">
-              <Input label="Pincode" placeholder="6-digit Pincode" name="pincode" />
+              <Input label="Email" placeholder="Email" name="email" type='email' />
             </div>
             <div className="mb-6">
               <Input label="Password" placeholder="••••••••" name="password" type="password" />
+            </div>
+            <div className="mb-6">
+              <Input label="Contact" placeholder="••••••••" name="contact" />
             </div>
 
             <Button

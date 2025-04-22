@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 
 const ProtectedRoute: React.FC = () => {
-    const token = useSelector((state: RootState) => state.auth.token);
+    const token = useSelector((state: RootState) => state.auth.accessToken);
+
+    console.log(token,'token')
 
     return token ? <Outlet /> : <Navigate to="/" replace />;
 };

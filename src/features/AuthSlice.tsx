@@ -4,17 +4,17 @@ import { LoginTypes } from "../types/TYPES";
 const initialState: LoginTypes = {
     email: "",
     password: "",
-    token: ""
+    accessToken: ""
 };
 
 const AuthSlice = createSlice({
-    name: "LoginAuth",
+    name: "login",
     initialState,
     reducers: {
         login: (state, action: PayloadAction<LoginTypes>) => {
             state.email = action.payload.email;
             state.password = action.payload.password;
-            state.token = action.payload.token;
+            state.accessToken = action.payload.accessToken;
         },
         logout: (state) => {
             state.email = "";
