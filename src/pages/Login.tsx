@@ -9,7 +9,7 @@ import * as yup from 'yup';
 
 const Login = () => {
   const disPatch = useDispatch();
-  const initialValues: LoginTypes = {
+  const initialValues: Required<LoginTypes> = {
     email: '',
     password: '',
     token: '',

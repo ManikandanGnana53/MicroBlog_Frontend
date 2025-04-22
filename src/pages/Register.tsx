@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import AxiosInstance from '../utils/axiosINstance';
 
 function Register() {
-  const initialValues: RegisterProps = {
+  const initialValues:   RegisterProps = {
     email: '',
     address: '',
     pincode: 0,
