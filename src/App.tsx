@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./routes/ProtectedRoutes";
 import Register from "./pages/Register";
 import BlogsView from "./pages/Blogs/BlogsView";
+import BlogManager from "./pages/Blogs/BlogManager";
 
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
       <Route path="/register" element={<Register />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/Blogsview" element={<BlogsView />} />
+        <Route path="/Blogmanager" element={<BlogManager />} />
 
       </Route>
 

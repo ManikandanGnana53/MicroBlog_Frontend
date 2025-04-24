@@ -29,7 +29,7 @@ const Login = () => {
     }
     AxiosInstance.post("api/v1/login", data)
       .then((res) => {
-        navigate('/Blogsview')
+        navigate('/Blogmanager')
         disPatch(login(res.data));
         localStorage.setItem("accessToken", res.data.accessToken)
       }
